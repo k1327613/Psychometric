@@ -12,7 +12,7 @@ require(psych)
 allVars <- c('ID_fam','zyg','sexzyg','sex1','sex2','cchaos91', 'cchaos92', 'cchaos121', 'cchaos122', 'cchaos141','cchaos142', 'cchaos161', 'cchaos162', 'pchaos9', 'pchaos12', 'pchaos14', 'cpfee91', 'cpfee92', 'cpfee121', 'cpfee122', 'cpfee141', 'cpfee142', 'cpfeeneg91', 'cpfeeneg92', 'cpfeeneg121', 'cpfeeneg122', 'cpfeeneg141', 'cpfeeneg142', 'cpfeepos91', 'cpfeepos92', 'cpfeepos121', 'cpfeepos122', 'cpfeepos141', 'cpfeepos142', 'ppfee91', 'ppfee92', 'ppfee121', 'ppfee122', 'ppfee141', 'ppfee142', 'ppfeeneg91', 'ppfeeneg92', 'ppfeeneg121', 'ppfeeneg122', 'ppfeeneg141', 'ppfeeneg142', 'ppfeepos91', 'ppfeepos92', 'ppfeepos121', 'ppfeepos122', 'ppfeepos141', 'ppfeepos142',  'cpdis91', 'cpdis92', 'cpdis121', 'cpdis122', 'cpdis141', 'cpdis142',  'cpdis161', 'cpdis162', 'cpdisneg91', 'cpdisneg92', 'cpdisneg121', 'cpdisneg122', 'cpdisneg141', 'cpdisneg142', 'cpdisneg161', 'cpdisneg162', 'cpdispos91', 'cpdispos92', 'cpdispos121', 'cpdispos122', 'cpdispos141', 'cpdispos142', 'cpdispos161', 'cpdispos162','ppdis91', 'ppdis92', 'ppdis121', 'ppdis122', 'ppdis141', 'ppdis142', 'ppdisneg91', 'ppdisneg92', 'ppdisneg121', 'ppdisneg122', 'ppdisneg141', 'ppdisneg142', 'ppdispos91', 'ppdispos92', 'ppdispos121', 'ppdispos122', 'ppdispos141', 'ppdispos142', 'cmfq121', 'cmfq122', 'cbhmfq161', 'cbhmfq162', 'pmfq121', 'pmfq122', 'pbhmfq161', 'pbhmfq162' )				#Name your variables
 data <- read.table ('/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Data/ALLDATA_all_ages_by reporter_for_MX_v2.raw', header=FALSE, na.strings='.', col.names=allVars)	#THIS DIRECTS OPENMX TO YOUR DATAFILE IN THE WORKING DIRECTORY
 
-selVars  <- c('cpdis91','ppdis91','cpdis121','ppdis121','cpdis141','ppdis141','cpdis92', 'ppdis92','cpdis122', 'ppdis122','cpdis142', 'ppdis142')  #SELECT VARIABLES FOR ANALYSIS
+selVars  <- c('cpfee91','ppfee91','cpfee121','ppfee121','cpfee141','ppfee141','cpfee92', 'ppfee92','cpfee122', 'ppfee122','cpfee142', 'ppfee142')  #SELECT VARIABLES FOR ANALYSIS
 
 
 nv <- 6
@@ -273,8 +273,8 @@ parameterSpecifications(FittedPsych)
 expectedMeansCovariances(FittedPsych)
 tableFitStatistics(FittedPsych)                  
 
-colnames <- c('pdis9_sta2', 'pdis12_sta2', 'pdis14_sta2','pdis9_stc2', 'pdis12_stc2', 'pdis14_stc2','pdis9_ste2', 'pdis12_ste2', 'pdis14_ste2')
-rnames <- c( 'pdis9', 'pdis12', 'pdis14')
+colnames <- c('pfee9_sta2', 'pfee12_sta2', 'pfee14_sta2','pfee9_stc2', 'pfee12_stc2', 'pfee14_stc2','pfee9_ste2', 'pfee12_ste2', 'pfee14_ste2')
+rnames <- c( 'pfee9', 'pfee12', 'pfee14')
 
 #Cbind squared a,c,e path estimates
 latent.sq.paths <- cbind(FittedPsych$MZfModel.a2@result,FittedPsych$MZfModel.c2@result,FittedPsych$MZfModel.e2@result)
@@ -298,7 +298,7 @@ sq.child.path.sums
 st.sq.child.paths <- sq.child.paths /sq.child.path.sums
 st.sq.child.paths.only<- st.sq.child.paths[,10:18] 
 st.sq.clatent.paths.only <- st.sq.child.paths[,1:9]
-write.csv(st.sq.child.paths.only,'/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/CSVs for plots/pdis_child.csv',row.names=TRUE)
+write.csv(st.sq.child.paths.only,'/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/CSVs for plots/pfee_child.csv',row.names=TRUE)
 #Standardised path estimates for child-reports only
 child <- st.sq.child.paths.only + st.sq.clatent.paths.only
 
@@ -316,7 +316,7 @@ sq.parent.path.sums
 st.sq.parent.paths <-sq.parent.paths /sq.parent.path.sums 
 st.sq.parent.paths.only<- st.sq.parent.paths[,10:18] 
 st.sq.platent.paths.only <- st.sq.parent.paths[,1:9]
-write.csv(st.sq.parent.paths.only,'/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/CSVs for plots/pdis_parent.csv',row.names=TRUE)
+write.csv(st.sq.parent.paths.only,'/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/CSVs for plots/pfee_parent.csv',row.names=TRUE)
 
 #Standardised path estimates for parent-reports only
 parent <- st.sq.parent.paths.only + st.sq.platent.paths.only
@@ -344,10 +344,10 @@ st.sq.unique.paths <- (sq.unique.paths /sq.unique.path.sums)
 st.sq.unique.paths.only<- st.sq.unique.paths[,10:18] 
 st.sq.ulatent.paths.only <- st.sq.unique.paths[,1:9]
 st.sq.ulatent.paths.only
-write.csv(st.sq.ulatent.paths.only,'/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/CSVs for plots/pdis_latent.csv',row.names=TRUE)
+write.csv(st.sq.ulatent.paths.only,'/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/CSVs for plots/pfee_latent.csv',row.names=TRUE)
 
 
-#sink("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/psychometric_pdis.csv")
+#sink("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Model fitting/Psychometric/psychometric_pfee.csv")
 fits <- tableFitStatistics(FittedPsych)
 output <- list(latent.sq.paths, parent.sq.paths, child.sq.paths, parent, child, fits)
 output
@@ -409,7 +409,7 @@ y22
 y33
 
 
-png("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Plots/Psychometric/pdis_latent.png", width=15, height=4.5, units="in", res=400)
+png("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Plots/Psychometric/pfee_latent.png", width=15, height=4.5, units="in", res=400)
 layout(matrix(1:6, nrow=2, ncol=3), widths=c(4.5,4.5,4.5,4.5,4.5,4.5), heights=c(4,.5,4,.5,4,.5), respect=T)
 par(mar=c(0,2.5,2,2.5), cex=0.75, xpd=F)
 plot.stacked(x,y11, xlim=c(9,14), ylim=c(0, 1), yaxs="i", col=c('navy','royalblue3','lightskyblue', 'gray87', 'gray87','white'), border='gray0', lwd=0.5, xaxt="n" ,yaxp=c(0,1,10), ylab="Proportion of phenotypic variance accounted for", las=2)
@@ -487,7 +487,7 @@ y22
 y33
 
 
-png("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Plots/Psychometric/pdis_parent.png", width=15, height=4.5, units="in", res=400)
+png("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Plots/Psychometric/pfee_parent.png", width=15, height=4.5, units="in", res=400)
 layout(matrix(1:6, nrow=2, ncol=3), widths=c(4.5,4.5,4.5,4.5,4.5,4.5), heights=c(4,.5,4,.5,4,.5), respect=T)
 par(mar=c(0,2.5,2,2.5), cex=0.75)
 plot.stacked(x,y11, xlim=c(9,14), ylim=c(0, 1), yaxs="i", col=c('white','navy','royalblue3','lightskyblue', 'gray87', 'gray87'), border='gray0', lwd=0.5, xaxt="n" ,yaxp=c(0,1,10), ylab="Proportion of phenotypic variance accounted for", las=2)
@@ -566,7 +566,7 @@ y22
 y33
 
 
-png("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Plots/Psychometric/pdis_child.png", width=15, height=4.5, units="in", res=400)
+png("/Users/lauriejhannigan/Dropbox/Documents (Dropbox)/PhD/My Documents (KCL)/Projects/TEDS/Plots/Psychometric/pfee_child.png", width=15, height=4.5, units="in", res=400)
 layout(matrix(1:6, nrow=2, ncol=3), widths=c(4.5,4.5,4.5,4.5,4.5,4.5), heights=c(4,.5,4,.5,4,.5), respect=T)
 par(mar=c(0,2.5,2,2.5), cex=0.75)
 plot.stacked(x,y11, xlim=c(9,14), ylim=c(0, 1), yaxs="i", col=c('white','navy','royalblue3','lightskyblue', 'gray87', 'gray87'), border='gray0', lwd=0.5, xaxt="n" ,yaxp=c(0,1,10), ylab="", las=2)
